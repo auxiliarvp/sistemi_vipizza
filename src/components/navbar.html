@@ -1,0 +1,43 @@
+<!-- src/components/navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <!-- Marca: siempre vuelve a src/index.html -->
+    <a class="navbar-brand" href="/src/index.html">SISTEMI_VIPIZZA</a>
+
+    <!-- Botón hamburguesa -->
+    <button
+      class="navbar-toggler" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú fijo -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Inicio -->
+        <li class="nav-item">
+          <a class="nav-link" href="/src/index.html">Inicio</a>
+        </li>
+        <!-- Home -->
+        <li class="nav-item">
+          <a class="nav-link" href="/src/pages/home/home.html">Home</a>
+        </li>
+        <!-- Empresa -->
+        <li class="nav-item">
+          <a class="nav-link" href="/src/pages/empresa/empresa.html">Empresa</a>
+        </li>
+        <!-- Otras secciones futuras -->
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" href="/src/pages/pedidos/pedidos.html">Pedidos</a>
+        </li>
+        -->
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,43 @@
+/* src/styles/global.css */
+
+/* Reserva espacio para el navbar fixed-top */
+body {
+  padding-top: 70px; /* Ajusta este valor si cambias la altura del navbar */
+  background-color: #f8f9fa;
+}
+
+/* Estilos base del navbar */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar .nav-link {
+  margin-right: 1rem;
+  color: #495057;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: #0d6efd;
+}
+
+.navbar .nav-link.active {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+/* Ajustes responsive */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+  .navbar .nav-link {
+    margin-right: 0.5rem;
+  }
+}
