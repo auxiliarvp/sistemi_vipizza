@@ -11,6 +11,11 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="../../styles/global.css" />
   <link rel="stylesheet" href="../../styles/main.css" />
 </head>
@@ -19,12 +24,23 @@
   <div id="navbar-container"></div>
 
   <div class="container py-5">
-    <h2 class="display-5">Menú Principal</h2>
-    <p class="lead">Selecciona una opción:</p>
+    <h2 class="display-5">
+      <i class="fas fa-th-large me-2"></i>Menú Principal
+    </h2>
+    <p class="lead">
+      <i class="fas fa-info-circle me-1"></i>Selecciona una opción:
+    </p>
     <ul class="list-group">
-      <li class="list-group-item">
-        <a href="../empresa/empresa.html">Ir a Empresa</a>
+      <li class="list-group-item d-flex align-items-center">
+        <i class="fas fa-building fa-lg me-3 text-primary"></i>
+        <a href="../empresa/empresa.html" class="stretched-link">Ir a Empresa</a>
       </li>
+      <!-- Ejemplo de futuras opciones:
+      <li class="list-group-item d-flex align-items-center">
+        <i class="fas fa-shopping-cart fa-lg me-3 text-success"></i>
+        <a href="../pedidos/pedidos.html" class="stretched-link">Pedidos</a>
+      </li>
+      -->
     </ul>
   </div>
 
@@ -47,6 +63,6 @@
   </script>
 
   <!-- lógica específica de Home -->
-  <script type="module" src="./home.js"></script>
+  <script src="./home.js" defer></script>
 </body>
 </html>
