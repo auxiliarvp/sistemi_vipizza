@@ -1,1 +1,87 @@
-/* main.css - estilos adicionales */
+/* src/styles/main.css */
+
+/* Modal genérico: fondo semitransparente y centrado */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.modal .modal-dialog {
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal .modal-content {
+  position: relative;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+/* Asegura que el contenido principal no quede oculto bajo el navbar */
+body[data-page] {
+  padding-top: 70px;
+}
+
+/* Tablas siempre responsive y scroll horizontal */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 100%;
+  width: auto;
+  border-collapse: collapse;
+}
+
+/* Ajustes para modales: botón de cierre */
+.modal .btn-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.modal .btn-close:hover {
+  opacity: 1;
+}
+
+/* Pequeño espaciado en el contenido de los modales */
+.modal .modal-content p,
+.modal .modal-content input,
+.modal .modal-content select,
+.modal .modal-content textarea {
+  margin-bottom: 0.75rem;
+}
+
+/* Ajustes para que las tables y formularios luzcan uniformes */
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.form-control,
+.form-select,
+textarea {
+  border-radius: 0.25rem;
+}
+
+/* Botones de los modales ocupan todo el ancho */
+.modal .modal-content .btn {
+  width: 100%;
+}
