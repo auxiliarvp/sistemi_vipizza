@@ -1,6 +1,6 @@
 /* src/styles/main.css */
 
-/* Modal genérico: fondo semitransparente y centrado */
+/* —— Modal genérico: fondo semitransparente y centrado —— */
 .modal {
   display: none;
   position: fixed;
@@ -29,45 +29,17 @@
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 }
 
-/* Oculta el botón .btn-close por defecto */
+/* Oculta el botón .btn-close de Bootstrap dentro de modales */
 .modal .btn-close {
   display: none;
 }
 
-/* Asegura que el contenido principal no quede oculto bajo el navbar */
-body[data-page] {
-  padding-top: 70px;
-}
-
-/* Tablas siempre responsive y scroll horizontal */
-.table-responsive {
-  overflow-x: auto;
-}
-
-.table-responsive table {
-  min-width: 100%;
-  width: auto;
-  border-collapse: collapse;
-}
-
-/* Pequeño espaciado en el contenido de los modales */
+/* Espaciado interno y márgenes en modales */
 .modal .modal-content p,
 .modal .modal-content input,
 .modal .modal-content select,
 .modal .modal-content textarea {
   margin-bottom: 0.75rem;
-}
-
-/* Ajustes para que las tablas y formularios luzcan uniformes */
-.table th,
-.table td {
-  vertical-align: middle;
-}
-
-.form-control,
-.form-select,
-textarea {
-  border-radius: 0.25rem;
 }
 
 /* Botones de los modales ocupan todo el ancho */
@@ -95,7 +67,103 @@ textarea {
   opacity: 1;
 }
 
-/* Asegura que el icono no interfiera con los clicks */
 .custom-close i {
   pointer-events: none;
+}
+
+/* —— Navbar offset —— */
+body[data-page] {
+  padding-top: 70px;
+}
+
+/* —— Tablas responsive —— */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 100%;
+  width: auto;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+/* —— Formularios —— */
+.form-control,
+.form-select,
+textarea {
+  border-radius: 0.25rem;
+}
+
+/* —— Home: tarjeta visual para Empresas & Sucursales —— */
+#empresaLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1.25rem 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: auto;
+  position: relative;
+}
+
+#empresaLink:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#empresaLink .fa-building {
+  font-size: 2.5rem;
+  color: #0d6efd;
+  margin-right: 0.75rem;
+}
+
+#empresaLink .fw-semibold {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badges .badge {
+  display: inline-block;
+  min-width: 2.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 1rem;
+  color: #fff;
+}
+
+.badge-primary {
+  background-color: #0d6efd !important;
+}
+
+.badge-secondary {
+  background-color: #6c757d !important;
+}
+
+/* Responsive: en móviles, apila vertical */
+@media (max-width: 576px) {
+  #empresaLink {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    text-align: left;
+  }
 }
