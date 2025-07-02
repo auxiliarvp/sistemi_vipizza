@@ -29,6 +29,11 @@
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 }
 
+/* Oculta el botón .btn-close por defecto */
+.modal .btn-close {
+  display: none;
+}
+
 /* Asegura que el contenido principal no quede oculto bajo el navbar */
 body[data-page] {
   padding-top: 70px;
@@ -45,22 +50,6 @@ body[data-page] {
   border-collapse: collapse;
 }
 
-/* Ajustes para modales: botón de cierre */
-.modal .btn-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  background: none;
-  border: none;
-  font-size: 1.25rem;
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
-}
-
-.modal .btn-close:hover {
-  opacity: 1;
-}
-
 /* Pequeño espaciado en el contenido de los modales */
 .modal .modal-content p,
 .modal .modal-content input,
@@ -69,7 +58,7 @@ body[data-page] {
   margin-bottom: 0.75rem;
 }
 
-/* Ajustes para que las tables y formularios luzcan uniformes */
+/* Ajustes para que las tablas y formularios luzcan uniformes */
 .table th,
 .table td {
   vertical-align: middle;
@@ -84,4 +73,29 @@ textarea {
 /* Botones de los modales ocupan todo el ancho */
 .modal .modal-content .btn {
   width: 100%;
+}
+
+/* Cierre minimalista para modales */
+.custom-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: #333;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.custom-close:hover {
+  opacity: 1;
+}
+
+/* Asegura que el icono no interfiera con los clicks */
+.custom-close i {
+  pointer-events: none;
 }

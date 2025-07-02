@@ -133,7 +133,9 @@
   <div id="addCompanyModal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content p-4">
-        <button class="btn-close ms-auto" onclick="closeModal('addCompanyModal')"></button>
+        <button class="custom-close ms-auto" onclick="closeModal('addCompanyModal')">
+          <i class="fas fa-times"></i>
+        </button>
         <h2 class="h5 mb-3">Agregar Empresa</h2>
         <input id="companyName" class="form-control mb-2" placeholder="Nombre" required/>
         <input id="companyAddress" class="form-control mb-2" placeholder="Dirección"/>
@@ -154,7 +156,9 @@
   <div id="editCompanyModal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content p-4">
-        <button class="btn-close ms-auto" onclick="closeModal('editCompanyModal')"></button>
+        <button class="custom-close ms-auto" onclick="closeModal('editCompanyModal')">
+          <i class="fas fa-times"></i>
+        </button>
         <h2 class="h5 mb-3">Editar Empresa</h2>
         <input type="hidden" id="editCompanyId"/>
         <input id="editCompanyName" class="form-control mb-2" placeholder="Nombre" required/>
@@ -176,7 +180,9 @@
   <div id="viewCompanyModal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content p-4">
-        <button class="btn-close ms-auto" onclick="closeModal('viewCompanyModal')"></button>
+        <button class="custom-close ms-auto" onclick="closeModal('viewCompanyModal')">
+          <i class="fas fa-times"></i>
+        </button>
         <h2 class="h5 mb-3">Detalles Empresa</h2>
         <ul id="companyDetailsList" class="list-group small"></ul>
       </div>
@@ -187,7 +193,9 @@
   <div id="addBranchModal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content p-4">
-        <button class="btn-close ms-auto" onclick="closeModal('addBranchModal')"></button>
+        <button class="custom-close ms-auto" onclick="closeModal('addBranchModal')">
+          <i class="fas fa-times"></i>
+        </button>
         <h2 class="h5 mb-3">Agregar Sucursal</h2>
         <input id="branchName" class="form-control mb-2" placeholder="Nombre" required/>
         <input id="branchAddress" class="form-control mb-2" placeholder="Dirección"/>
@@ -210,7 +218,9 @@
   <div id="editBranchModal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content p-4">
-        <button class="btn-close ms-auto" onclick="closeModal('editBranchModal')"></button>
+        <button class="custom-close ms-auto" onclick="closeModal('editBranchModal')">
+          <i class="fas fa-times"></i>
+        </button>
         <h2 class="h5 mb-3">Editar Sucursal</h2>
         <input type="hidden" id="editBranchId"/>
         <input id="editBranchName" class="form-control mb-2" placeholder="Nombre" required/>
@@ -234,7 +244,9 @@
   <div id="viewBranchModal" class="modal">
     <div class="modal-dialog">
       <div class="modal-content p-4">
-        <button class="btn-close ms-auto" onclick="closeModal('viewBranchModal')"></button>
+        <button class="custom-close ms-auto" onclick="closeModal('viewBranchModal')">
+          <i class="fas fa-times"></i>
+        </button>
         <h2 class="h5 mb-3">Detalles Sucursal</h2>
         <ul id="branchDetailsList" class="list-group small"></ul>
       </div>

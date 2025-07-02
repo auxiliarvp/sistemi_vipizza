@@ -40,6 +40,29 @@ async function audit(act, col, id, data = {}) {
 function isValidEmail(email) { return /^\S+@\S+\.\S+$/.test(email); }
 function isValidPhone(phone) { return /^\d{7,}$/.test(phone); }
 
+// Reset forms
+function resetCompanyForm() {
+  $('#companyName').value = '';
+  $('#companyAddress').value = '';
+  $('#companyPhone').value = '';
+  $('#companyEmail').value = '';
+  $('#companyCreationDate').value = '';
+  $('#companyDescription').value = '';
+  $('#companyStatus').value = 'ACTIVO';
+}
+
+function resetBranchForm() {
+  $('#branchName').value = '';
+  $('#branchAddress').value = '';
+  $('#branchPhone').value = '';
+  $('#branchEmail').value = '';
+  $('#branchCreationDate').value = '';
+  $('#branchManager').value = '';
+  $('#branchDescription').value = '';
+  $('#branchStatus').value = 'ACTIVO';
+  $('#companySelect').value = '';
+}
+
 // — Empresas CRUD —
 
 async function loadCompanies() {
@@ -62,6 +85,7 @@ async function loadCompanies() {
 }
 
 function showAddCompanyForm() {
+  resetCompanyForm();
   showModal('addCompanyModal');
 }
 
@@ -90,6 +114,7 @@ async function addCompany() {
     const ref = await db.collection('empresas').add(payload);
     await audit('create','empresas',ref.id,{ name });
     Swal.fire('Guardado','','success');
+    resetCompanyForm();
     closeModal('addCompanyModal');
     loadCompanies();
     loadCompanyOptions();
@@ -233,6 +258,7 @@ async function loadBranches() {
 }
 
 function showAddBranchForm() {
+  resetBranchForm();
   showModal('addBranchModal');
 }
 
@@ -268,6 +294,7 @@ async function addBranch() {
     const ref = await db.collection('sucursales').add(payload);
     await audit('create','sucursales',ref.id,{ name });
     Swal.fire('Guardado','','success');
+    resetBranchForm();
     closeModal('addBranchModal');
     loadBranches();
   } catch {
@@ -400,16 +427,25 @@ function filterBranchesByCompany() {
 
 async function loadCompanyOptions() {
   const selAdd  = $('#companySelect');
+  const selEdit = $('#editCompanySelect');
   const selFilt = $('#branchCompanyFilter');
+
   selAdd.innerHTML  = '';
+  selEdit.innerHTML = '';
   selFilt.innerHTML = '<option value="">Todas las empresas</option>';
+
   const snap = await db.collection('empresas').orderBy('name').get();
   snap.forEach(d => {
-    const opt = document.createElement('option');
-    opt.value = d.id;
-    opt.textContent = d.data().name;
-    selAdd.appendChild(opt);
-    selFilt.appendChild(opt.cloneNode(true));
+    const name = d.data().name;
+    const opt1 = document.createElement('option');
+    opt1.value = d.id; opt1.textContent = name;
+    selAdd.appendChild(opt1);
+
+    const opt2 = opt1.cloneNode(true);
+    selEdit.appendChild(opt2);
+
+    const opt3 = opt1.cloneNode(true);
+    selFilt.appendChild(opt3);
   });
 }
 
