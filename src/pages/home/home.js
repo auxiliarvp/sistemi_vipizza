@@ -2,7 +2,7 @@
 
 async function updateCounts() {
   try {
-    // usa la `db` global de firebaseConfig.js en modo compat
+    // Usa la `db` global de firebaseConfig.js en modo compat
     const [empSnap, sucSnap] = await Promise.all([
       db.collection('empresas').get(),
       db.collection('sucursales').get()

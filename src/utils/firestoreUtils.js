@@ -1,30 +1,65 @@
 // src/utils/firestoreUtils.js
 import { db } from '../services/firebaseConfig.js';
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc
+} from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
 
-// Lee todos los documentos de una colección
+/**
+ * Obtiene todos los documentos de una colección.
+ * @param {string} collectionName
+ * @returns {Promise<Array<Object>>}
+ */
 export async function getDocsByCollection(collectionName) {
-  const snapshot = await db.collection(collectionName).get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const colRef = collection(db, collectionName);
+  const snap = await getDocs(colRef);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
 }
 
-// Lee un documento por su ID
+/**
+ * Obtiene un documento por ID.
+ * @param {string} collectionName
+ * @param {string} id
+ * @returns {Promise<Object>}
+ */
 export async function getDocById(collectionName, id) {
-  const docRef = db.collection(collectionName).doc(id);
-  const snap = await docRef.get();
+  const docRef = doc(db, collectionName, id);
+  const snap = await getDoc(docRef);
   return { id: snap.id, ...snap.data() };
 }
 
-// Agrega un documento nuevo
+/**
+ * Añade un nuevo documento a la colección.
+ * @param {string} collectionName
+ * @param {Object} data
+ */
 export async function addDocument(collectionName, data) {
-  await db.collection(collectionName).add(data);
+  const colRef = collection(db, collectionName);
+  await addDoc(colRef, data);
 }
 
-// Actualiza un documento existente
+/**
+ * Actualiza un documento existente.
+ * @param {string} collectionName
+ * @param {string} id
+ * @param {Object} data
+ */
 export async function updateDocument(collectionName, id, data) {
-  await db.collection(collectionName).doc(id).update(data);
+  const docRef = doc(db, collectionName, id);
+  await updateDoc(docRef, data);
 }
 
-// Elimina un documento
+/**
+ * Elimina un documento por ID.
+ * @param {string} collectionName
+ * @param {string} id
+ */
 export async function deleteDocument(collectionName, id) {
-  await db.collection(collectionName).doc(id).delete();
+  const docRef = doc(db, collectionName, id);
+  await deleteDoc(docRef);
 }

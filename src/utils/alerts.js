@@ -25,7 +25,6 @@ export function showFormPrompt(title, htmlInputs) {
       const phone   = document.getElementById('swal-phone').value;
       const email   = document.getElementById('swal-email').value;
       const status  = document.getElementById('swal-status').value;
-
       if (!name) {
         Swal.showValidationMessage('El nombre es requerido');
         return null;

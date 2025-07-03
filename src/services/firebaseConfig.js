@@ -1,5 +1,4 @@
-// ESM module: initializes Firebase and exports Firestore instance
-
+// src/services/firebaseConfig.js
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
 import { getFirestore }  from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
 

@@ -32,7 +32,7 @@ const addBtn = document.getElementById('addBtn');
 let companies = [];
 let branchesByCompany = {};
 
-// 1. Carga inicial de datos
+// 1️⃣ Carga inicial de datos
 async function loadData() {
   clearContainer(cardContainer);
   showLoader(cardContainer);
@@ -48,7 +48,7 @@ async function loadData() {
   }
 }
 
-// 2. Render de tarjetas
+// 2️⃣ Render de tarjetas
 function renderCards() {
   clearContainer(cardContainer);
   if (companies.length === 0) {
@@ -61,22 +61,22 @@ function renderCards() {
   });
 }
 
-// 3. Delegación de eventos en las tarjetas
+// 3️⃣ Delegación de eventos
 cardContainer.addEventListener('click', e => {
   const btn = e.target.closest('button[data-action]');
   if (!btn) return;
   const { action, id } = btn.dataset;
-  if (action === 'view')   return viewDetails(id);
-  if (action === 'edit')   return openForm('edit', id);
-  if (action === 'del')    return confirmDelete(id);
+  if (action === 'view') return viewDetails(id);
+  if (action === 'edit') return openForm('edit', id);
+  if (action === 'del')  return confirmDelete(id);
 });
 
-// 4. Ver detalles de una empresa
+// 4️⃣ Ver detalles de una empresa
 async function viewDetails(id) {
   try {
-    const comp = await getDocById('empresas', id);
+    const comp     = await getDocById('empresas', id);
     const branches = branchesByCompany[id] || [];
-    const html = buildCompanyDetailHtml(comp, branches);
+    const html     = buildCompanyDetailHtml(comp, branches);
     Swal.fire({ title: 'Detalles de empresa', html, width: 600 });
   } catch (e) {
     console.error(e);
@@ -84,12 +84,12 @@ async function viewDetails(id) {
   }
 }
 
-// 5. Abrir modal de agregar/editar
+// 5️⃣ Abrir modal Agregar/Editar
 function openForm(mode, id = '') {
   const isEdit = mode === 'edit';
   const existing = isEdit
     ? companies.find(c => c.id === id) || {}
-    : { name: '', address: '', phone: '', email: '', status: 'ACTIVO' };
+    : { name:'', address:'', phone:'', email:'', status:'ACTIVO' };
 
   const inputs = `
     <input id="swal-name"    class="swal2-input" placeholder="Nombre"    value="${existing.name || ''}">
@@ -97,8 +97,8 @@ function openForm(mode, id = '') {
     <input id="swal-phone"   class="swal2-input" placeholder="Teléfono"  value="${existing.phone || ''}">
     <input id="swal-email"   class="swal2-input" placeholder="Email"     value="${existing.email || ''}">
     <select id="swal-status" class="swal2-select">
-      <option value="ACTIVO"${existing.status === 'ACTIVO' ? ' selected' : ''}>Activo</option>
-      <option value="INACTIVO"${existing.status === 'INACTIVO' ? ' selected' : ''}>Inactivo</option>
+      <option value="ACTIVO"${existing.status==='ACTIVO'?' selected':''}>Activo</option>
+      <option value="INACTIVO"${existing.status==='INACTIVO'?' selected':''}>Inactivo</option>
     </select>`;
 
   showFormPrompt(isEdit ? 'Editar empresa' : 'Agregar empresa', inputs)
@@ -120,24 +120,25 @@ function openForm(mode, id = '') {
     });
 }
 
-// 6. Confirmar y eliminar
+// 6️⃣ Confirmar y eliminar
 function confirmDelete(id) {
-  confirmAction('¿Eliminar esta empresa?').then(ok => {
-    if (!ok) return;
-    deleteDocument('empresas', id)
-      .then(() => {
-        showToastSuccess('Empresa eliminada');
-        loadData();
-      })
-      .catch(e => {
-        console.error(e);
-        showToastError('Error eliminando');
-      });
-  });
+  confirmAction('¿Eliminar esta empresa?')
+    .then(ok => {
+      if (!ok) return;
+      deleteDocument('empresas', id)
+        .then(() => {
+          showToastSuccess('Empresa eliminada');
+          loadData();
+        })
+        .catch(e => {
+          console.error(e);
+          showToastError('Error eliminando');
+        });
+    });
 }
 
-// 7. Botón de agregar
+// 7️⃣ Botón de agregar
 addBtn.addEventListener('click', () => openForm('add'));
 
-// 8. Inicialización
+// 8️⃣ Inicialización
 window.addEventListener('DOMContentLoaded', loadData);

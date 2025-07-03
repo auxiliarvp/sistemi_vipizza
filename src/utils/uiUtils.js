@@ -20,7 +20,7 @@ export function showNoDataMessage(container, message) {
   container.innerHTML = `<p class="text-center text-muted">${message}</p>`;
 }
 
-// Crea la tarjeta DOM de una empresa
+// Crea la tarjeta DOM de una empresa con iconos
 export function createCompanyCard(company, branchCount) {
   const col = document.createElement('div');
   col.className = 'col-12 col-md-6 col-lg-4';
@@ -31,25 +31,25 @@ export function createCompanyCard(company, branchCount) {
   const body = document.createElement('div');
   body.className = 'card-body';
 
+  // Título con icono de edificio
   const title = document.createElement('h5');
   title.className = 'card-title';
-  title.textContent = company.name;
+  title.innerHTML = `<i class="fas fa-building me-2"></i>${company.name}`;
 
+  // Contador de sucursales con icono de rama
   const count = document.createElement('p');
   count.className = 'card-text';
-  count.textContent = `${branchCount} sucursales`;
+  count.innerHTML = `<i class="fas fa-code-branch me-1"></i>${branchCount} sucursales`;
 
   const btnGroup = document.createElement('div');
   btnGroup.className = 'd-flex justify-content-end gap-2';
 
-  // Botones: ver, editar, eliminar
-  const actions = [
-    { action: 'view',  icon: 'eye',   style: 'info'    },
-    { action: 'edit',  icon: 'edit',  style: 'warning' },
-    { action: 'del',   icon: 'trash', style: 'danger'  }
-  ];
-
-  actions.forEach(({ action, icon, style }) => {
+  // Botones: ver, editar, eliminar (ya tenían iconos)
+  [
+    { action: 'view', icon: 'eye',   style: 'info'    },
+    { action: 'edit', icon: 'edit',  style: 'warning' },
+    { action: 'del',  icon: 'trash', style: 'danger'  }
+  ].forEach(({ action, icon, style }) => {
     const btn = document.createElement('button');
     btn.className = `btn btn-sm btn-${style}`;
     btn.dataset.action = action;
