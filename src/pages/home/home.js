@@ -1,17 +1,24 @@
 // src/pages/home/home.js
 
+// Importa tu instancia modular de Firestore
+import { db } from '../../services/firebaseConfig.js';
+// Importa helper para contar documentos
+import { getDocsByCollection } from '../../utils/firestoreUtils.js';
+
+const companyCountEl = document.getElementById('companyCount');
+const branchCountEl  = document.getElementById('branchCount');
+
 async function updateCounts() {
   try {
-    // Usa la `db` global de firebaseConfig.js en modo compat
-    const [empSnap, sucSnap] = await Promise.all([
-      db.collection('empresas').get(),
-      db.collection('sucursales').get()
-    ]);
-    document.getElementById('companyCount').textContent = empSnap.size;
-    document.getElementById('branchCount').textContent  = sucSnap.size;
+    // Usa tu util modular para obtener arrays
+    const companies = await getDocsByCollection('empresas');
+    const branches  = await getDocsByCollection('sucursales');
+
+    companyCountEl.textContent = companies.length;
+    branchCountEl.textContent  = branches.length;
   } catch (e) {
     console.error('Error al obtener contadores:', e);
   }
 }
 
-document.addEventListener('DOMContentLoaded', updateCounts);
+window.addEventListener('DOMContentLoaded', updateCounts);
