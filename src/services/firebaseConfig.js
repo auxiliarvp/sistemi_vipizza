@@ -1,7 +1,9 @@
-// src/services/firebaseConfig.js
+// ESM module: initializes Firebase and exports Firestore instance
 
-// Tu configuración de Firebase (rellena con tus datos)
-var firebaseConfig = {
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+import { getFirestore }  from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+
+const firebaseConfig = {
   apiKey: "AIzaSyDGtCY41fj9VfQQdRzQQN6U3LhgJoWS-6M",
   authDomain: "dbsistemivipizza.firebaseapp.com",
   projectId: "dbsistemivipizza",
@@ -10,8 +12,5 @@ var firebaseConfig = {
   appId: "1:718217980446:web:09cf2558bfad0ce9d6dc0f"
 };
 
-// Inicializa Firebase (compat)
-firebase.initializeApp(firebaseConfig);
-
-// Exponer la instancia de Firestore en global
-var db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
