@@ -1,168 +1,106 @@
 /* src/styles/main.css */
 
-/* —— Modal genérico: fondo semitransparente y centrado —— */
+/* —— Modal genérico —— */
 .modal {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  align-items: center;
-  justify-content: center;
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  align-items: center; justify-content: center;
   z-index: 1050;
 }
-
 .modal .modal-dialog {
-  max-height: 80vh;
-  overflow-y: auto;
-  margin: 0 auto;
-  width: 90%;
-  max-width: 500px;
+  max-height: 80vh; overflow-y: auto;
+  margin: 0 auto; width: 90%; max-width: 500px;
 }
-
 .modal .modal-content {
   position: relative;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  background: #fff; border-radius: .5rem;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
 }
-
-/* Oculta el botón .btn-close de Bootstrap dentro de modales */
-.modal .btn-close {
-  display: none;
-}
-
-/* Espaciado interno y márgenes en modales */
-.modal .modal-content p,
-.modal .modal-content input,
-.modal .modal-content select,
-.modal .modal-content textarea {
-  margin-bottom: 0.75rem;
-}
-
-/* Botones de los modales ocupan todo el ancho */
-.modal .modal-content .btn {
-  width: 100%;
-}
-
-/* Cierre minimalista para modales */
-.custom-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: transparent;
-  border: none;
-  padding: 0;
-  font-size: 1rem;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-}
-
-.custom-close:hover {
-  opacity: 1;
-}
-
-.custom-close i {
-  pointer-events: none;
-}
+.modal .btn-close { display: none; }
 
 /* —— Navbar offset —— */
-body[data-page] {
-  padding-top: 70px;
-}
+body[data-page] { padding-top: 70px; }
 
 /* —— Tablas responsive —— */
-.table-responsive {
-  overflow-x: auto;
-}
-
-.table-responsive table {
-  min-width: 100%;
-  width: auto;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td {
-  vertical-align: middle;
-}
+.table-responsive { overflow-x: auto; }
+.table-responsive table { width: auto; min-width: 100%; }
+.table th, .table td { vertical-align: middle; }
 
 /* —— Formularios —— */
-.form-control,
-.form-select,
-textarea {
-  border-radius: 0.25rem;
+.form-control, .form-select, textarea {
+  border-radius: .25rem;
 }
 
-/* —— Home: tarjeta combinada de conteo —— */
+/* —— Home: tarjeta única —— */
 body[data-page="home"] #empresaLink {
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: .5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem;
   max-width: 400px;
-  width: 100%;
+  margin: auto;
   text-decoration: none;
   color: inherit;
+  transition: transform .2s, box-shadow .2s;
 }
-
 body[data-page="home"] #empresaLink:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-body[data-page="home"] #empresaLink .card-body {
+/* filas flexibles para PC y móviles */
+body[data-page="home"] #empresaLink .row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem;
+  width: 100%;
+  justify-content: space-around;
+}
+body[data-page="home"] #empresaLink .col-12 {
+  flex: 1;
+  text-align: center;
+  padding: .5rem 0;
 }
 
-/* Iconos */
-body[data-page="home"] #empresaLink .fa-building,
-body[data-page="home"] #empresaLink .fa-store {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
+/* iconos y badges minimalistas */
+body[data-page="home"] #empresaLink i {
+  font-size: 2rem;
+  margin-bottom: .5rem;
 }
-
-/* Títulos de sección */
 body[data-page="home"] #empresaLink .text-muted {
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  font-size: .75rem;
+  margin-bottom: .25rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
 }
-
-/* Contadores */
 body[data-page="home"] #empresaLink .badge {
-  font-size: 1.25rem;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  color: #fff;
+  font-size: 1rem;
+  padding: .25rem .5rem;
+  border-radius: .75rem;
 }
 
-/* Colores específicos */
-.badge-primary {
-  background-color: #0d6efd !important;
-}
+/* colores */
+.badge-primary { background-color: #0d6efd !important; }
+.badge-secondary { background-color: #6c757d !important; }
 
-.badge-secondary {
-  background-color: #6c757d !important;
-}
-
-/* Responsive: apilar en móviles */
+/* Responsive: apilar en móvil */
 @media (max-width: 576px) {
+  body[data-page="home"] #empresaLink {
+    padding: .75rem;
+  }
   body[data-page="home"] #empresaLink .row {
     flex-direction: column;
-    gap: 1rem;
+    gap: .75rem;
+  }
+}
+
+/* Responsive: vista de escritorio ligera */
+@media (min-width: 576px) {
+  body[data-page="home"] #empresaLink {
+    flex-direction: row;
   }
 }
