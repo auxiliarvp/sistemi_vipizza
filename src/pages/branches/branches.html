@@ -1,0 +1,115 @@
+<!-- src/pages/branches/branches.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sucursales – SISTEMI_VIPIZZA</title>
+
+  <!-- Bootstrap 5 & FontAwesome -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Toastr & SweetAlert2 CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="../../styles/global.css" />
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <!-- CSS del sidebar -->
+  <link rel="stylesheet" href="../../styles/sidebar.css" />
+</head>
+<body data-page="branches">
+  <!-- Navbar fijo -->
+  <div id="navbar-container"></div>
+  <script defer>
+    fetch('../../components/navbar.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('navbar-container').innerHTML = html)
+      .catch(console.error);
+  </script>
+
+  <div class="d-flex">
+    <!-- Sidebar lateral fijo -->
+    <div id="company-sidebar-container"></div>
+    <script defer>
+      fetch('../../components/company-sidebar.html')
+        .then(r => r.text())
+        .then(html => document.getElementById('company-sidebar-container').innerHTML = html)
+        .catch(console.error);
+    </script>
+
+    <!-- Contenido principal -->
+    <div class="content-with-sidebar flex-grow-1">
+      <!-- Breadcrumbs -->
+      <div id="breadcrumbs-container" class="px-4 py-2"></div>
+      <script defer>
+        fetch('../../components/breadcrumbs.html')
+          .then(r => r.text())
+          .then(html => {
+            const bc = document.getElementById('breadcrumbs-container');
+            bc.innerHTML = html;
+            const items = bc.querySelectorAll('.breadcrumb-item');
+            if (items[1]) items[1].innerHTML = '<a href="../company/company.html">Empresas</a>';
+            if (items[2]) items[2].textContent = 'Sucursales';
+          })
+          .catch(console.error);
+      </script>
+
+      <!-- Título y botón agregar -->
+      <div class="d-flex justify-content-between align-items-center px-4 mb-4">
+        <h1 id="companyName" class="h3 m-0">Sucursales</h1>
+        <button
+          id="addBranchBtn"
+          class="btn btn-primary rounded-circle"
+          style="width:3.5rem; height:3.5rem;"
+          aria-label="Agregar sucursal"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+
+      <!-- Listado de sucursales -->
+      <section id="branchesContainer" class="row g-4 px-4">
+        <!-- Aquí se inyectarán las tarjetas de sucursal -->
+      </section>
+    </div>
+  </div>
+
+  <!-- JS Dependencies: SweetAlert2 & Toastr -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+  ></script>
+
+  <!-- Popper & Bootstrap JS -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+  ></script>
+
+  <!-- Lógica modular ESM de Branches -->
+  <script type="module" defer src="./branches.js"></script>
+</body>
+</html>

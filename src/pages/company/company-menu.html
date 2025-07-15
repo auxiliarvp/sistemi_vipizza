@@ -1,0 +1,86 @@
+<!-- src/pages/company/company-menu.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company Menu – SISTEMI_VIPIZZA</title>
+
+  <!-- Bootstrap 5 & FontAwesome -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="../../styles/global.css" />
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/sidebar.css" />
+</head>
+<body data-page="company-menu">
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+  <script defer>
+    fetch('../../components/navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+      })
+      .catch(console.error);
+  </script>
+
+  <div class="d-flex">
+    <!-- Sidebar lateral fijo -->
+    <div id="company-sidebar-container"></div>
+    <script defer>
+      fetch('../../components/company-sidebar.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('company-sidebar-container').innerHTML = html;
+        })
+        .catch(console.error);
+    </script>
+
+    <!-- Contenido principal desplazado -->
+    <div class="content-with-sidebar flex-grow-1">
+      <!-- Título dinámico de la empresa -->
+      <h1 id="companyName" class="mb-4 px-4"></h1>
+
+      <!-- Aquí irá el contenido específico de cada módulo -->
+      <div id="module-content" class="px-4">
+        <!-- Ejemplo: Información, Configuración, Sucursales, etc. -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Ajuste dinámico de la posición y altura del sidebar -->
+  <script defer>
+    window.addEventListener('load', () => {
+      const nav     = document.querySelector('.navbar.fixed-top');
+      const sidebar = document.getElementById('company-sidebar');
+      if (nav && sidebar) {
+        const navH = nav.offsetHeight;
+        sidebar.style.top    = `${navH}px`;
+        sidebar.style.height = `calc(100vh - ${navH}px)`;
+      }
+    });
+  </script>
+
+  <!-- Popper & Bootstrap JS -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+  ></script>
+
+  <!-- Lógica modular ESM -->
+  <script type="module" defer src="./company-menu.js"></script>
+</body>
+</html>

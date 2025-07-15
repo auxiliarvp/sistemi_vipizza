@@ -3,25 +3,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <title>Empresas &amp; Sucursales – SISTEMI_VIPIZZA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Companies – SISTEMI_VIPIZZA</title>
 
-  <!-- Bootstrap 5 CSS -->
+  <!-- Bootstrap 5 & FontAwesome -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
-  <!-- Font Awesome -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
   />
-  <!-- Toastr CSS -->
+  <!-- Toastr & SweetAlert2 CSS -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     rel="stylesheet"
   />
 
@@ -30,64 +30,34 @@
   <link rel="stylesheet" href="../../styles/main.css" />
 </head>
 <body data-page="company">
-  <!-- Navbar -->
+  <!-- Navbar fijo -->
   <div id="navbar-container"></div>
-
-  <div class="container-fluid py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <button
-        class="btn btn-secondary"
-        onclick="location.href='../home/home.html'"
-      >
-        <i class="fas fa-arrow-left"></i> Menú
-      </button>
-      <h1 class="h4 mb-0">Empresas &amp; Sucursales</h1>
-    </div>
-
-    <!-- Botón flotante para agregar -->
-    <button
-      id="addBtn"
-      class="btn btn-primary rounded-circle"
-      style="
-        position: fixed;
-        bottom: 1rem;
-        right: 1rem;
-        width: 3.5rem;
-        height: 3.5rem;
-        z-index: 1050;
-      "
-    >
-      <i class="fas fa-plus"></i>
-    </button>
-
-    <!-- Contenedor de tarjetas -->
-    <div id="cardContainer" class="row g-4"></div>
-  </div>
-
-  <!-- Inyectar navbar -->
   <script>
     fetch('../../components/navbar.html')
       .then(r => r.text())
-      .then(html => {
-        document.getElementById('navbar-container').innerHTML = html;
-      })
+      .then(html => (document.getElementById('navbar-container').innerHTML = html))
       .catch(console.error);
   </script>
 
-  <!-- ——————— CARGA FIREBASE COMPAT ——————— -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <!-- NO cargues aquí tu firebaseConfig.js con <script> -->
-  <!-- Lo importaremos desde el módulo company.js -->
+  <main class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h2 m-0">Companies</h1>
+      <button id="addBtn" class="btn btn-primary">
+        <i class="fas fa-plus me-1"></i> Add Company
+      </button>
+    </div>
+    <section id="cardContainer" class="row g-4">
+      <!-- Aquí se inyectan las tarjetas -->
+    </section>
+  </main>
 
-  <!-- ——————— DEPENDENCIAS UI ——————— -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Dependencias JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- ——————— TU LÓGICA COMO MÓDULO ——————— -->
-  <script type="module" src="./company.js"></script>
+  <!-- Lógica modular -->
+  <script type="module" defer src="./company.js"></script>
 </body>
 </html>

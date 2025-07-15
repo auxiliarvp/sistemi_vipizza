@@ -1,0 +1,27 @@
+<!-- src/components/company-sidebar.html -->
+<nav
+  id="company-sidebar"
+  class="position-fixed top-0 start-0 vh-100 d-flex flex-column"
+>
+  <div class="px-3 mb-4">
+    <!-- Aquí inyectaremos el nombre de la empresa -->
+    <h5 id="sidebarCompanyName"></h5>
+  </div>
+  <ul class="nav nav-pills flex-column mb-auto px-2">
+    <li class="nav-item mb-2">
+      <a id="linkInfo" class="nav-link text-dark" href="#">
+        <i class="fas fa-info-circle me-2"></i>Información
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a id="linkConfig" class="nav-link text-dark" href="#">
+        <i class="fas fa-cog me-2"></i>Configuración
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a id="linkBranches" class="nav-link text-dark" href="#">
+        <i class="fas fa-store me-2"></i>Sucursales
+      </a>
+    </li>
+  </ul>
+</nav>

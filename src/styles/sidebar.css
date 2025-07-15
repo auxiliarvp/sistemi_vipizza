@@ -1,0 +1,35 @@
+/* src/styles/sidebar.css */
+
+#company-sidebar {
+  position: fixed;
+  top: 70px;                  /* coincidir con tu padding-top en global.css */
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 70px); /* toda la altura menos la del navbar */
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  transition: all .3s ease;
+  z-index: 1020;
+}
+
+.content-with-sidebar {
+  margin-top: 70px;           /* bajo el navbar */
+  margin-left: 250px;         /* espacio para el sidebar */
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  #company-sidebar {
+    position: relative !important;
+    top: auto;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+  .content-with-sidebar {
+    margin-top: 0;
+    margin-left: 0;
+    padding-top: 1rem;
+  }
+}

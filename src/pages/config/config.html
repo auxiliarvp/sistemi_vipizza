@@ -1,0 +1,133 @@
+<!-- src/pages/config/config.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configuración – SISTEMI_VIPIZZA</title>
+
+  <!-- Bootstrap 5 & FontAwesome -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Toastr & SweetAlert2 CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="../../styles/global.css" />
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/sidebar.css" />
+  <link rel="stylesheet" href="../../styles/company.css" />
+</head>
+<body data-page="config">
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+  <script defer>
+    fetch('../../components/navbar.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('navbar-container').innerHTML = html)
+      .catch(console.error);
+  </script>
+
+  <div class="d-flex">
+    <!-- Sidebar lateral -->
+    <div id="company-sidebar-container"></div>
+    <script defer>
+      fetch('../../components/company-sidebar.html')
+        .then(r => r.text())
+        .then(html => document.getElementById('company-sidebar-container').innerHTML = html)
+        .catch(console.error);
+    </script>
+
+    <!-- Contenido principal -->
+    <div class="content-with-sidebar flex-grow-1">
+      <h1 class="h4 mb-4 px-4">Configuración</h1>
+      <div id="configSection" class="px-4">
+        <form id="configForm" class="row g-3 align-items-end">
+          <div class="col-md-6">
+            <label for="inputName" class="form-label">Nombre</label>
+            <input type="text" id="inputName" class="form-control" required />
+          </div>
+          <div class="col-md-6">
+            <label for="inputAddress" class="form-label">Dirección</label>
+            <input type="text" id="inputAddress" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label for="inputPhone" class="form-label">Teléfono</label>
+            <input type="text" id="inputPhone" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" id="inputEmail" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label for="selectStatus" class="form-label">Estado</label>
+            <select id="selectStatus" class="form-select">
+              <option value="ACTIVO">Activo</option>
+              <option value="INACTIVO">Inactivo</option>
+            </select>
+          </div>
+          <div class="col-12 d-flex align-items-center">
+            <button type="submit" id="saveConfigBtn" class="btn btn-primary">
+              <i class="fas fa-save me-1"></i>Guardar cambios
+            </button>
+            <button type="button" id="deactivateBtn" class="btn btn-warning ms-2">
+              <i class="fas fa-toggle-off me-1"></i>Desactivar
+            </button>
+            <button type="button" id="deleteBtn" class="btn btn-danger ms-2">
+              <i class="fas fa-trash me-1"></i>Eliminar (temporal)
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ajuste dinámico del sidebar -->
+  <script defer>
+    window.addEventListener('load', () => {
+      const nav     = document.querySelector('.navbar.fixed-top');
+      const sidebar = document.getElementById('company-sidebar');
+      if (nav && sidebar) {
+        const navH = nav.offsetHeight;
+        sidebar.style.top    = `${navH}px`;
+        sidebar.style.height = `calc(100vh - ${navH}px)`;
+      }
+    });
+  </script>
+
+  <!-- JS Dependencies -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+  ></script>
+
+  <!-- Lógica modular ESM -->
+  <script type="module" defer src="./config.js"></script>
+</body>
+</html>

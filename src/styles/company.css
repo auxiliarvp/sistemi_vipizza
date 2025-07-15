@@ -1,0 +1,73 @@
+/* src/styles/company.css */
+
+/* Fondo claro para toda la vista de Company */
+body[data-page="company"],
+body[data-page="company-menu"] {
+  background-color: #f8f9fa;
+}
+
+/* Hover suave en las tarjetas clicables */
+.card[data-id] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.card[data-id]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Truncado de títulos largos en las tarjetas */
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilo del texto de contador de sucursales */
+.card-text {
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+/* Padding interno aumentado en el cuerpo de la tarjeta */
+.card-body {
+  padding: 1.25rem;
+}
+
+/* Margen inferior extra en móviles para columnas completas */
+#cardContainer .row > .col-12 {
+  margin-bottom: 1rem;
+}
+
+/* Botón flotante “+” más definido */
+#addBtn {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* Ajustes responsivos: asegurar 3 columnas en lg en Company list */
+@media (min-width: 992px) {
+  #cardContainer .col-lg-4 {
+    max-width: 33.3333%;
+  }
+}
+
+/* Estilos para la vista Company Menu */
+body[data-page="company-menu"] h1#companyName {
+  font-weight: 500;
+}
+
+#menuTab .nav-link {
+  font-size: 0.95rem;
+}
+
+#menuTabContent .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#menuTabContent .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}

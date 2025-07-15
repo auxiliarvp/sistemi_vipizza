@@ -1,65 +1,72 @@
 // src/utils/firestoreUtils.js
+
 import { db } from '../services/firebaseConfig.js';
 import {
-  collection,
+  collection as getColRef,
   getDocs,
-  doc,
+  doc as getDocRef,
   getDoc,
   addDoc,
   updateDoc,
   deleteDoc
 } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
 
-/**
- * Obtiene todos los documentos de una colección.
- * @param {string} collectionName
- * @returns {Promise<Array<Object>>}
- */
+/** Manejo centralizado de errores Firestore */
+function handleError(op, error) {
+  console.error(`Firestore ${op} error:`, error);
+  throw error;
+}
+
+/** Obtiene todos los documentos de una colección */
 export async function getDocsByCollection(collectionName) {
-  const colRef = collection(db, collectionName);
-  const snap = await getDocs(colRef);
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  try {
+    const colRef = getColRef(db, collectionName);
+    const snap   = await getDocs(colRef);
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch (e) {
+    handleError(`getDocs(${collectionName})`, e);
+  }
 }
 
-/**
- * Obtiene un documento por ID.
- * @param {string} collectionName
- * @param {string} id
- * @returns {Promise<Object>}
- */
+/** Obtiene un documento por ID */
 export async function getDocById(collectionName, id) {
-  const docRef = doc(db, collectionName, id);
-  const snap = await getDoc(docRef);
-  return { id: snap.id, ...snap.data() };
+  try {
+    const docRef = getDocRef(db, collectionName, id);
+    const snap   = await getDoc(docRef);
+    if (!snap.exists()) throw new Error('Documento no encontrado');
+    return { id: snap.id, ...snap.data() };
+  } catch (e) {
+    handleError(`getDoc(${collectionName}/${id})`, e);
+  }
 }
 
-/**
- * Añade un nuevo documento a la colección.
- * @param {string} collectionName
- * @param {Object} data
- */
+/** Añade un documento nuevo y devuelve su ID */
 export async function addDocument(collectionName, data) {
-  const colRef = collection(db, collectionName);
-  await addDoc(colRef, data);
+  try {
+    const colRef = getColRef(db, collectionName);
+    const docRef = await addDoc(colRef, data);
+    return docRef.id;
+  } catch (e) {
+    handleError(`addDoc(${collectionName})`, e);
+  }
 }
 
-/**
- * Actualiza un documento existente.
- * @param {string} collectionName
- * @param {string} id
- * @param {Object} data
- */
+/** Actualiza un documento existente */
 export async function updateDocument(collectionName, id, data) {
-  const docRef = doc(db, collectionName, id);
-  await updateDoc(docRef, data);
+  try {
+    const docRef = getDocRef(db, collectionName, id);
+    await updateDoc(docRef, data);
+  } catch (e) {
+    handleError(`updateDoc(${collectionName}/${id})`, e);
+  }
 }
 
-/**
- * Elimina un documento por ID.
- * @param {string} collectionName
- * @param {string} id
- */
+/** Elimina un documento por ID */
 export async function deleteDocument(collectionName, id) {
-  const docRef = doc(db, collectionName, id);
-  await deleteDoc(docRef);
+  try {
+    const docRef = getDocRef(db, collectionName, id);
+    await deleteDoc(docRef);
+  } catch (e) {
+    handleError(`deleteDoc(${collectionName}/${id})`, e);
+  }
 }

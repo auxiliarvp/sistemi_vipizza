@@ -186,3 +186,84 @@ body[data-page="empresa"] .d-flex.align-items-center.mb-3.gap-2.flex-wrap {
     margin: 1rem auto;
   }
 }
+
+/* —— Company-Menu page —— */
+body[data-page="company-menu"] {
+  /* Mantener mismo fondo y padding que el resto */
+  background-color: #f8f9fa;
+  padding-top: 70px;
+}
+
+/* Estilo de pestañas */
+body[data-page="company-menu"] #menuTab {
+  border-bottom: 1px solid #dee2e6;
+}
+body[data-page="company-menu"] #menuTab .nav-link {
+  margin-right: 1rem;
+  color: #495057;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+body[data-page="company-menu"] #menuTab .nav-link.active {
+  color: #fff;
+  background-color: #0d6efd;
+}
+
+/* Espaciado entre contenido de pestañas */
+body[data-page="company-menu"] #menuTabContent {
+  padding-top: 1.5rem;
+}
+
+/* Sección Información: cuadros blancos */
+body[data-page="company-menu"] #infoSection .col-md-6 {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+body[data-page="company-menu"] #infoSection p {
+  margin: 0;
+}
+
+/* Formulario Configuración: inputs unificados */
+body[data-page="company-menu"] #configForm .form-control,
+body[data-page="company-menu"] #configForm .form-select {
+  border: 1px solid #ced4da;
+  max-width: 300px;
+}
+
+/* Módulos: tarjetas clicables */
+body[data-page="company-menu"] #menuTabContent .card.text-decoration-none {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+body[data-page="company-menu"] #menuTabContent .card.text-decoration-none:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsivo para company-menu */
+@media (max-width: 768px) {
+  /* Pestañas scroll */
+  body[data-page="company-menu"] #menuTab {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  body[data-page="company-menu"] #menuTab .nav-item {
+    flex: 0 0 auto;
+  }
+  /* Sección Información apilada */
+  body[data-page="company-menu"] #infoSection .col-md-6 {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 0;
+  }
+  /* Módulos apilados */
+  body[data-page="company-menu"] #menuTabContent .row.g-4 {
+    row-gap: 1rem;
+  }
+  body[data-page="company-menu"] #menuTabContent .col-12 {
+    width: 100%;
+  }
+}
