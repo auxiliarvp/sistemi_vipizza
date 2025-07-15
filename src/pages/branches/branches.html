@@ -29,11 +29,11 @@
   <!-- Tus estilos -->
   <link rel="stylesheet" href="../../styles/global.css" />
   <link rel="stylesheet" href="../../styles/main.css" />
-  <!-- CSS del sidebar -->
   <link rel="stylesheet" href="../../styles/sidebar.css" />
+  <link rel="stylesheet" href="../../styles/company.css" />
 </head>
 <body data-page="branches">
-  <!-- Navbar fijo -->
+  <!-- Navbar -->
   <div id="navbar-container"></div>
   <script defer>
     fetch('../../components/navbar.html')
@@ -54,24 +54,8 @@
 
     <!-- Contenido principal -->
     <div class="content-with-sidebar flex-grow-1">
-      <!-- Breadcrumbs -->
-      <div id="breadcrumbs-container" class="px-4 py-2"></div>
-      <script defer>
-        fetch('../../components/breadcrumbs.html')
-          .then(r => r.text())
-          .then(html => {
-            const bc = document.getElementById('breadcrumbs-container');
-            bc.innerHTML = html;
-            const items = bc.querySelectorAll('.breadcrumb-item');
-            if (items[1]) items[1].innerHTML = '<a href="../company/company.html">Empresas</a>';
-            if (items[2]) items[2].textContent = 'Sucursales';
-          })
-          .catch(console.error);
-      </script>
-
-      <!-- Título y botón agregar -->
       <div class="d-flex justify-content-between align-items-center px-4 mb-4">
-        <h1 id="companyName" class="h3 m-0">Sucursales</h1>
+        <h1 id="companyName" class="h4 m-0">Sucursales</h1>
         <button
           id="addBranchBtn"
           class="btn btn-primary rounded-circle"
@@ -81,15 +65,26 @@
           <i class="fas fa-plus"></i>
         </button>
       </div>
-
-      <!-- Listado de sucursales -->
       <section id="branchesContainer" class="row g-4 px-4">
         <!-- Aquí se inyectarán las tarjetas de sucursal -->
       </section>
     </div>
   </div>
 
-  <!-- JS Dependencies: SweetAlert2 & Toastr -->
+  <!-- Ajuste dinámico del sidebar -->
+  <script defer>
+    window.addEventListener('load', () => {
+      const nav     = document.querySelector('.navbar.fixed-top');
+      const sidebar = document.getElementById('company-sidebar');
+      if (nav && sidebar) {
+        const navH = nav.offsetHeight;
+        sidebar.style.top    = `${navH}px`;
+        sidebar.style.height = `calc(100vh - ${navH}px)`;
+      }
+    });
+  </script>
+
+  <!-- JS Dependencies -->
   <script
     defer
     src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"
@@ -98,8 +93,6 @@
     defer
     src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
   ></script>
-
-  <!-- Popper & Bootstrap JS -->
   <script
     defer
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
